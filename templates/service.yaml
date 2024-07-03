@@ -8,9 +8,9 @@ spec:
     app: haha-again
   ports:
     - name: http
-      port: 80
-      targetPort: 8000
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
-      nodePort: 30083
+      nodePort: {{ .Values.service.nodePort }}
 
 

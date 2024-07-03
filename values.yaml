@@ -42,27 +42,30 @@ securityContext: {}
 service:
   type: NodePort
   port: 80
-  nodePort: 30082
+  nodePort: 30083
   targetPort: 8000
 
 ingress:
   enabled: true
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: app.infra.gitgitgitlab.ru
-      paths:
-        - path: /
-          pathType: Prefix
-  tls: 
+  name: haha-again
+  annotations:
+    ingress.alb.yc.io/subnets: e2l5h6jiqmufik96h0ol
+    ingress.alb.yc.io/external-ipv4-address: 158.160.81.92
+    ingress.alb.yc.io/group-name: infra-ingress
+    ingress.alb.yc.io/security-groups: enpgt0e9ii51bhoharas
+  tls:
     - hosts:
         - "app.infra.gitgitgitlab.ru"
       secretName: yc-certmgr-cert-id-fpqc22k00c4n4s7hv2i2
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  rules:
+    - host: app.infra.gitgitgitlab.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: haha-again-service
+              servicePort: 80
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
