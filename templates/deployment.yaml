@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haha-again
+  labels:
+    app: haha-again
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: haha-again
+  template:
+    metadata:
+      labels:
+        app: haha-again
+    spec:
+      containers:
+      - name: haha-again
+        image: ferllord/flask_helm:latest
+        ports:
+          - name: http
+            containerPort: 8000
+

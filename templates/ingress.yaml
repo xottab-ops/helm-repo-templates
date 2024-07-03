@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: haha-again
+  annotations:
+    ingress.alb.yc.io/subnets: e2l5h6jiqmufik96h0ol
+    ingress.alb.yc.io/external-ipv4-address: 158.160.81.92
+    ingress.alb.yc.io/group-name: infra-ingress
+    ingress.alb.yc.io/security-groups: enpgt0e9ii51bhoharas
+spec:
+  tls:
+    - hosts:
+        - "app.infra.gitgitgitlab.ru"
+      secretName: yc-certmgr-cert-id-fpqc22k00c4n4s7hv2i2
+  rules:
+    - host: app.infra.gitgitgitlab.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: haha-again-service
+                port:
+                  number: 80
+
+
