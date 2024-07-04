@@ -89,11 +89,11 @@ readinessProbe:
     port: http
 
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 30
+  targetMemoryUtilizationPercentage: 30
 
 # Additional volumes on the output Deployment definition.
 volumes: []
